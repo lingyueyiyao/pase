@@ -42,6 +42,7 @@ static inline int check_reg_index(int index) {
 
 #define reg_l(index) (cpu.gpr[check_reg_index(index)]._32)
 #define reg_w(index) (cpu.gpr[check_reg_index(index)]._16)
+//下标 0，1，2，3 访问高字节，index右移两位后为0，下标 4，5，6，7 访问低字节，index右移两位后为1
 #define reg_b(index) (cpu.gpr[check_reg_index(index) & 0x3]._8[index >> 2])
 
 extern const char* regsl[];

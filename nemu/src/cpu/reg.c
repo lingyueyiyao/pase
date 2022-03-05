@@ -21,6 +21,7 @@ void reg_test() {
     assert(reg_w(i) == (sample[i] & 0xffff));
   }
 
+  //判断各相关寄存器的值是否对应，如AX是否是EAX的低16位
   assert(reg_b(R_AL) == (sample[R_EAX] & 0xff));
   assert(reg_b(R_AH) == ((sample[R_EAX] >> 8) & 0xff));
   assert(reg_b(R_BL) == (sample[R_EBX] & 0xff));
