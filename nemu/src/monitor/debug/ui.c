@@ -40,7 +40,7 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args);
 
-static int cmd_info(char *args);
+//static int cmd_info(char *args);
 
 static struct {
   char *name;
@@ -53,44 +53,44 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "args:[N];execute [N] instructions step by step", cmd_si },
-  { "info", "args:r/w;print information about registers or watchpoint", cmd_info },
+  //{ "info", "args:r/w;print information about registers or watchpoint", cmd_info },
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
-static int cmd_info(char *args) {
-  char s;
-  if (args == NULL) {
-    print("args error in cmd_info\n");
-    return 0;
-  }
-  int nRet = sscanf(args, "%c", &s);
-  if (nRet <= 0) {
-    printf("args error in cmd_info\n");
-    return 0;
-  }
-  if (s == 'r') {
-    int i;
-    //32bit
-    for (i = 0; i < 8; i++) {
-      print("%s    0x%x\n", regsl[i], reg_l(i)); //寄存器名称，数值
-    }
-    print("eip    0x%x\n", cpu.eip);
-    //16bit
-    for (i = 0; i < 8; i++) {
-      print("%s    0x%x\n", regsw[i], reg_w(i)); //寄存器名称，数值
-    }
-    //8bit
-    for (i = 0; i < 8; i++) {
-      print("%s    0x%x\n", regsb[i], reg_b(i)); //寄存器名称，数值
-    }
-    return 0;
-  }
+// static int cmd_info(char *args) {
+//   char s;
+//   if (args == NULL) {
+//     print("args error in cmd_info\n");
+//     return 0;
+//   }
+//   int nRet = sscanf(args, "%c", &s);
+//   if (nRet <= 0) {
+//     printf("args error in cmd_info\n");
+//     return 0;
+//   }
+//   if (s == 'r') {
+//     int i;
+//     //32bit
+//     for (i = 0; i < 8; i++) {
+//       print("%s    0x%x\n", regsl[i], reg_l(i)); //寄存器名称，数值
+//     }
+//     print("eip    0x%x\n", cpu.eip);
+//     //16bit
+//     for (i = 0; i < 8; i++) {
+//       print("%s    0x%x\n", regsw[i], reg_w(i)); //寄存器名称，数值
+//     }
+//     //8bit
+//     for (i = 0; i < 8; i++) {
+//       print("%s    0x%x\n", regsb[i], reg_b(i)); //寄存器名称，数值
+//     }
+//     return 0;
+//   }
 
-  print("args error in cmd_info\n");
-  return 0;
-}
+//   print("args error in cmd_info\n");
+//   return 0;
+// }
 
 static int cmd_si(char *args) {
   uint64_t N = 0;
