@@ -48,10 +48,26 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
+  { "si", "args:[N];execute [N] instructions step by step", cmd_si },
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+
+static int cmd_si(char *args) {
+  uint64_t N = 0;
+  if (args == NULL) {
+    N = 1;
+  } else {
+    int nRet = sscanf(args, "%llu", &N);
+    if (nRet <= 0) {
+      printf("args error in emd_si\n");
+      return 0;
+    }
+    cpu_exec(N);
+    return 0;
+  }
+}
 
 static int cmd_help(char *args) {
   /* extract the first argument */
