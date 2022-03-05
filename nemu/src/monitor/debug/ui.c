@@ -66,9 +66,9 @@ static int cmd_si(char *args) {
       printf("args error in emd_si\n");
       return 0;
     }
-    cpu_exec(N);
-    return 0;
   }
+  cpu_exec(N);
+  return 0;
 }
 
 static int cmd_help(char *args) {
